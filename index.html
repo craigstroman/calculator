@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+        <title>Calculator</title>
+        <meta name="description" content=""/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="stylesheet" href="css/styles.css"/>
+    </head>
+    <body>
+            <div class="container">
+            	<div id="calculator">
+            		<div class="expression-row">
+            			<div class="expression"></div>
+            		</div>
+            		<div class="input-row">
+            			<div class="calculator-input" data-answer="false">0</div>
+            		</div>
+            		<div class="btn-row">
+            			<div class="btn-container">
+            				<button type="button" class="btn btn-dark btn-math-function">x!</button>
+            			</div>
+            			<div class="btn-container">
+            				<button type="button" class="btn btn-dark btn-parentheses">(</button>
+            			</div>  
+            			<div class="btn-container">
+            				<button type="button" class="btn btn-dark btn-parentheses">)</button>
+            			</div> 
+            			<div class="btn-container"></div>    
+            			<div class="btn-container">
+            				<button type="button" class="btn btn-dark btn-negative-number">+/-</button>
+            			</div>        			
+            			<div class="btn-container">
+            				<button type="button" class="btn btn-dark btn-percent">%</button>
+            			</div>     			
+            			<div class="btn-container">
+            				<button type="button" id="clear-function" class="btn btn-dark btn-function">CE</button>
+            			</div>    			
+            		</div>       		
+            		<div class="btn-row">
+            			<div class="btn-container">
+            				<button type="button" class="btn btn-dark btn-function">lnv</button>
+            			</div>
+            			<div class="btn-container">
+            				<button type="button" class="btn btn-dark btn-math-function">sin</button>
+            			</div>
+            			<div class="btn-container">
+            				<button type="button" class="btn btn-dark btn-math-function">ln</button>
+            			</div>
+            			<div class="btn-container">
+            				<button type="button" class="btn btn-light btn-number">7</button>
+            			</div>  
+            			<div class="btn-container">
+            				<button type="button" class="btn btn-light btn-number">8</button>
+            			</div>     
+            			<div class="btn-container">
+            				<button type="button" class="btn btn-light btn-number">9</button>
+            			</div>     			
+            			<div class="btn-container">
+            				<button type="button" class="btn btn-dark btn-operator">÷</button>
+            			</div>    			
+            		</div>   
+            		<div class="btn-row">
+            			<div class="btn-container">
+            				<button type="button" class="btn btn-dark btn-math-function">π</button>
+            			</div>
+            			<div class="btn-container">
+            				<button type="button" class="btn btn-dark btn-math-function">cos</button>
+            			</div>
+            			<div class="btn-container">
+            				<button type="button" class="btn btn-dark btn-math-function">log<sub>10</sub></button>
+            			</div>
+            			<div class="btn-container">
+            				<button type="button" class="btn btn-light btn-number">4</button>
+            			</div>  
+            			<div class="btn-container">
+            				<button type="button" class="btn btn-light btn-number">5</button>
+            			</div>     
+            			<div class="btn-container">
+            				<button type="button" class="btn btn-light btn-number">6</button>
+            			</div>     			
+            			<div class="btn-container">
+            				<button type="button" class="btn btn-dark btn-operator">x</button>
+            			</div>      			
+            		</div>      		 		
+            		<div class="btn-row">
+            			<div class="btn-container">
+            				<button type="button" class="btn btn-dark btn-math-function">e</button>
+            			</div>
+            			<div class="btn-container">
+            				<button type="button" class="btn btn-dark btn-math-function">tan</button>
+            			</div>
+            			<div class="btn-container">
+            				<button type="button" class="btn btn-dark btn-math-function"><sup>2</sup>√<sub>x</sub></button>
+            			</div>
+            			<div class="btn-container">
+            				<button type="button" class="btn btn-light btn-number">1</button>
+            			</div>  
+            			<div class="btn-container">
+            				<button type="button" class="btn btn-light btn-number">2</button>
+            			</div>     
+            			<div class="btn-container">
+            				<button type="button" class="btn btn-light btn-number">3</button>
+            			</div>     			
+            			<div class="btn-container">
+            				<button type="button" class="btn btn-dark btn-operator">-</button>
+            			</div>  			
+            		</div>
+            		<div class="btn-row">
+            			<div class="btn-container">
+            				<button type="button" class="btn  btn-dark btn-function">Ans</button>
+            			</div>
+            			<div class="btn-container">
+            				<button type="button" class="btn  btn-dark btn-math-function">EXP</button>
+            			</div>
+            			<div class="btn-container">
+            				<button type="button" class="btn  btn-dark btn-math-function">x<sup>Y</sup></button>
+            			</div>
+            			<div class="btn-container">
+            				<button type="button" class="btn btn-light btn-number">0</button>
+            			</div>  
+            			<div class="btn-container">
+            				<button type="button" class="btn  btn-dark btn-decimal">.</button>
+            			</div>     
+            			<div class="btn-container">
+            				<button type="button" id="sum-function" class="btn btn-action btn-results">=</button>
+            			</div>     			
+            			<div class="btn-container">
+            				<button type="button" id="plus-function" class="btn  btn-dark btn-operator">+</button>
+            			</div>
+            		</div>    		
+            	</div>
+                        <div class="content">
+                            <p>To begin start by selecting numbers and then select an operator.</p>
+                        </div>
+            </div>
+    	<script src="js/calculator.js"></script>
+    </body>
+</html>
