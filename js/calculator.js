@@ -218,18 +218,31 @@ var Calculator = function () {
             input.innerHTML = _setNegativeNumber( inputText, input, e );
         } else if ( btnClass === "btn-operator" ) {
             input.innerHTML = _setOperator( inputText, input, btnClicked );
-        } else if ( btnClass === "btn-decimal" || btnClass === "btn-parentheses" ) {
-            if ( inputText === "0" ) {
-                if ( btnClicked === "(" ) {
+        } else if ( btnClass === "btn-parentheses" ) {
+            if ( btnClicked === "(" ) {
+                if ( inputText === "0" ) {
                     input.innerHTML = btnClicked;
                 } else {
-                    console.log( "error." );
-                    alert( "Error." );
+                    input.innerHTML = input.innerHTML + btnClicked;
                 }
+            } else if ( btnClicked === ")" ) {
+                if ( inputText === "0" || inputText === "(" ) {
+                    alert( "Error." );
+                    console.log( "Error" );
+                } else {
+                    input.innerHTML = input.innerHTML + btnClicked;
+                }
+            }
+        } else if ( btnClass === "btn-decimal" ) {
+            var lastCharacter = inputText.substr( inputText.length - 1, 1 );
+            if ( inputText === "0" ) {
+                input.innerHTML = input.innerHTML + btnClicked;
             } else {
-                var lastCharacter = input.innerHTML.substr( input.innerHTML.length - 1, 1 );
-
-                input.innerHTML = ( lastCharacter !== "." ) ? input.innerHTML + btnClicked : input.innerHTML;
+                if ( ( lastCharacter !== "." && _isOperator( lastCharacter ) ) || ( lastCharacter !== "." && input.innerHTML === "" ) ) {
+                    input.innerHTML = input.innerHTML + "0" + btnClicked;
+                } else {
+                    input.innerHTML = ( lastCharacter !== "." ) ? input.innerHTML + btnClicked : input.innerHTML;
+                }
             }
         } else if ( btnClass === "btn-function" ) {
             if ( btnClicked === "Ans" ) {
