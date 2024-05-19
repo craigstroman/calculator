@@ -1,0 +1,126 @@
+@import "includes/bourbon/bourbon";
+@import "includes/config";
+@import "includes/variables";
+@import "includes/mixins";
+@import "includes/foundation";
+@import "includes/elements";
+@import "includes/classes";
+
+.container {
+	width: 100%;
+	#calculator {
+		box-shadow: 4px 4px 4px 4px rgba(0,0,0,0.2);
+		height: 350px;
+		margin: 20px auto 0 auto;
+		width: 560px;
+		.expression-row {
+			height: 40px;
+			position: relative;
+			text-align: right;
+			width: 100%;
+			.expression {
+				bottom: 0;
+				font-size: 13px;
+				position: absolute;
+				right: 10px;
+				width: 100%;
+				span {
+					&:before, 
+					&:after {
+						content: "\00a0 ";
+					}				
+				}
+			}
+		}
+		.input-row {
+			height: 30px;
+			margin: 15px auto;
+			overflow: hidden;
+			padding: 0 13px 0 0;
+			text-align: center;
+			vertical-align: middle;
+			width: 95%;
+			.calculator-input {
+				border: 1px solid #d9d9d9;
+				border-radius: 4px;
+				color: #000;
+				height: 100%;
+				padding: 8px 5px 0 5px;
+				text-align: right;
+				width: 100%;
+				.spacer {
+					&:before, 
+					&:after {
+						content: "\00a0 ";
+					}
+				}
+				.light-text {
+					color: #ccc;
+				}
+			}
+			@include clearfix();
+		}
+		.btn-row {
+			margin: 0 auto;
+			text-align: center;
+			width: 100%;
+			.btn-container {
+				display: inline-block;
+				height: 40px;
+				width: 65px;			
+				.btn {
+					cursor: pointer;
+					height: 100%;
+					margin: 5px 0;
+					outline: none;
+					padding: 10px 0;
+					text-align: center;
+					vertical-align: bottom;
+					width: 100%;
+				}
+				.btn-light {
+					background-color: $number-background-color;
+					border-color: $number-border-color;
+					border-style: solid;
+					border-width: 1px;
+					color: #000;
+					&:hover {
+						border-color: darken($number-border-color, 10%);
+						transition: all 0.3s ease;
+					}
+				}
+				.btn-dark {
+					background-color: $function-background-color;
+					border-color: $function-border-color;
+					border-style: solid;
+					border-width: 1px;
+					color: #000;
+					&:hover {
+						border-color: darken($number-border-color, 10%);
+						transition: all 0.3s ease;
+					}				
+				}	
+				.btn-action {
+					background-color:  $action-background-color;
+					border-color: $action-border-color;
+					border-style: solid;
+					border-width: 1px;
+					color: #fefefe;
+					&:hover {
+						background-color: darken($action-background-color, 10%);
+						border-color: darken($number-border-color, 10%);
+						transition: all 0.3s ease;
+					}				
+				}			
+			}
+				
+		}
+		@include clearfix();
+	}
+	.content {
+		margin: 20px auto;
+		p {
+			text-align: center;
+		}
+	}	
+}
