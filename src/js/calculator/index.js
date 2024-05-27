@@ -346,11 +346,7 @@ export default class Calculator {
 
     postFix = this.infixPostFixExpression(chars);
 
-    console.log('postFix: ', postFix);
-
     result = this.evaluateExpression(postFix);
-
-    console.log('result: ', result);
 
     showExpression.innerHTML = inputHtml;
     this.input.innerHTML = result;
@@ -415,18 +411,10 @@ export default class Calculator {
       }
     }
 
-    // TODO: Figure out why I get Error, parenthesis not balanced when doing parenthesis
-    // TODO: Error occurs with this block of code.
-
-    console.log('operatorStack: ', operatorStack);
-
     if (operatorStack.length >= 1) {
       if (operatorStack.toString().match(/([()])/)) {
         output.push(operatorStack.pop());
       } else {
-        console.log('operatorStack: ', operatorStack);
-        console.log('inside here: ');
-        console.log('Error, parenthesis not balanced.');
         alert('Error, parenthesis not balanced.');
       }
     }
