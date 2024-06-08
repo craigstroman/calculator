@@ -1,3 +1,5 @@
+// TODO: Remove lnv button, move both sin and ln buttons over 1 and add a log button since there is a math.log method
+// TODO: Also work on Xy button next to 0
 export default class Calculator {
   constructor(buttons, clearBtn, sumBtn, input, result) {
     this.buttons = buttons;
@@ -118,10 +120,26 @@ export default class Calculator {
     }
   }
 
+  setDecimal() {
+    const lastCharacter = this.inputText.substring(this.inputText.length - 1, 1);
+    if (this.inputText === '0') {
+      this.input.innerHTML = this.input.innerHTML + this.btnClicked;
+    } else {
+      if (
+        (lastCharacter !== '.' && this.isOperator(lastCharacter)) ||
+        (lastCharacter !== '.' && this.input.innerHTML === '')
+      ) {
+        this.input.innerHTML = this.input.innerHTML + '0' + this.btnClicked;
+      } else {
+        this.input.innerHTML =
+          lastCharacter !== '.' ? this.input.innerHTML + this.btnClicked : this.input.innerHTML;
+      }
+    }
+  }
+
   setFunction() {
     if (this.btnClicked === 'Ans') {
       if (this.input.getAttribute('data-answer') === 'true') {
-        const result = document.getElementsByClassName('expression')[0];
         const sumBtn = document.getElementById('sum-function');
 
         this.input.setAttribute('data-answer', false);
@@ -129,9 +147,6 @@ export default class Calculator {
 
         this.input.innerHTML = input.innerHTML;
       }
-    } else if (this.btnClicked === 'lnv') {
-      console.log('Coming soon.');
-      alert('Coming soon.');
     }
   }
 
@@ -140,6 +155,11 @@ export default class Calculator {
     const subText = document.createElement('sub');
 
     switch (this.btnClicked) {
+      case 'log':
+        this.btnClicked = 'log(';
+
+        newMathFunction = this.btnClicked;
+        break;
       case 'log10':
         subText.innerHTML = '10';
         this.btnClicked = `log${subText.outerHTML}(`;
@@ -363,11 +383,14 @@ export default class Calculator {
   }
 
   isPercent(string) {
-    return string.toString().indexOf('%') >= 1 ? true : false;
+    if (string && string.length >= 1) {
+      return string.indexOf('%') >= 1 ? true : false;
+    }
+    return false;
   }
 
   isOperator(string) {
-    const regularExpression = /[(+)(-)(*)(\/)(log)(logTen)(sqrt)(sin)(cos)(tan)(EXP)(e)(!)]/gm;
+    const regularExpression = new RegExp(/[+|-|*|log|logTen|sqrt|sin|cos|tan|EXP|e|!]/gm);
 
     if (string.match(regularExpression)) {
       return true;
@@ -382,7 +405,6 @@ export default class Calculator {
 
     while (characters.length !== 0) {
       const currentCharacter = characters.shift();
-
       if (this.isNumber(currentCharacter) || this.isPercent(currentCharacter)) {
         output.push(currentCharacter);
       } else if (this.isOperator(currentCharacter)) {
@@ -402,6 +424,7 @@ export default class Calculator {
       } else if (currentCharacter === ')') {
         while (operatorStack[operatorStack.length - 1] !== '(') {
           if (operatorStack.length === 0) {
+            console.log('Error, parenthesis not balanced.');
             alert('Error, parenthesis not balanced.');
             break;
           }
@@ -411,11 +434,13 @@ export default class Calculator {
       }
     }
 
-    if (operatorStack.length >= 1) {
-      if (operatorStack.toString().match(/([()])/)) {
+    while (operatorStack.length !== 0) {
+      if (!operatorStack.toString().match(/([@'(@',@')@'])/gm)) {
         output.push(operatorStack.pop());
       } else {
+        console.log('Error, parenthesis not balanced.');
         alert('Error, parenthesis not balanced.');
+        break;
       }
     }
 
