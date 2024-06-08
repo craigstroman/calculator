@@ -17,6 +17,7 @@
 - Switched to Webpack
 - Switched to using ES6 classes
 - Added log function and removed lnv function
+- Added square function
 
 ###### Version 1.2.1
 
