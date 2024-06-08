@@ -1,5 +1,3 @@
-// TODO: Remove lnv button, move both sin and ln buttons over 1 and add a log button since there is a math.log method
-// TODO: Also work on Xy button next to 0
 export default class Calculator {
   constructor(buttons, clearBtn, sumBtn, input, result) {
     this.buttons = buttons;
@@ -152,6 +150,7 @@ export default class Calculator {
 
   setMathFunction() {
     let newMathFunction = '';
+    let squareFunction = false;
     const subText = document.createElement('sub');
 
     switch (this.btnClicked) {
@@ -166,8 +165,8 @@ export default class Calculator {
 
         newMathFunction = this.btnClicked;
         break;
-      case 'xY':
-        if (this.inputHtml.innerText === '0') {
+      case 'x2':
+        if (this.inputText === '0') {
           console.log('Error.');
           alert('Error');
           return 0;
@@ -177,8 +176,11 @@ export default class Calculator {
           hiddenText.innerHTML = '^';
           const supperText = document.createElement('sup');
           supperText.className = 'supper';
+          supperText.innerHTML = 2;
 
-          newMathFunction = hiddenText.outerHTML + supperText.outerHTML;
+          newMathFunction = 'X' + hiddenText.outerHTML + supperText.outerHTML;
+
+          squareFunction = true;
         }
         break;
       case '2√x':
@@ -213,6 +215,16 @@ export default class Calculator {
         this.input.appendChild(newMathFunction);
       } else {
         this.input.innerHTML = this.input.innerHTML + newMathFunction;
+        const clearBtn = document.getElementById('clear-function');
+        const showExpression = document.getElementsByClassName('expression')[0];
+        if (squareFunction) {
+          const value = parseFloat(this.inputText);
+          showExpression.innerHTML = this.input.innerHTML;
+
+          this.input.innerHTML = value * value;
+
+          clearBtn.innerHTML = 'AC';
+        }
       }
     }
 
@@ -490,6 +502,7 @@ export default class Calculator {
 
     while (characters.length !== 0) {
       const currentCharacter = characters.shift();
+      console.log('currentCharacter: ', currentCharacter);
 
       if (this.isNumber(currentCharacter) || this.isPercent(currentCharacter)) {
         evalStack.push(currentCharacter);
