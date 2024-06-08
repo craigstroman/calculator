@@ -97,7 +97,7 @@ export default class Calculator {
 
       result.innerHTML = '';
       this.input.innerHTML = '0';
-      this.innerHTML = 'CE';
+      this.clearBtn.innerHTML = 'CE';
     }
   }
 
