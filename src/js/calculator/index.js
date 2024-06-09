@@ -232,6 +232,8 @@ export default class Calculator {
   }
 
   setPercent() {
+    const clearBtn = document.getElementById('clear-function');
+    const showExpression = document.getElementsByClassName('expression')[0];
     const lastCharacterIndex = this.inputText.lastIndexOf('');
     const lastCharacter = this.inputText.substring(lastCharacterIndex - 1, 1);
     const power = document.getElementsByClassName('supper')[0];
@@ -247,6 +249,15 @@ export default class Calculator {
     } else {
       this.input.innerHTML = this.input.innerHTML.substr(0, this.input.innerHTML.length - 1);
     }
+
+    showExpression.innerHTML = this.input.innerHTML;
+
+    const value = parseFloat(this.inputText);
+    const result = value / 100;
+
+    this.input.innerHTML = result;
+
+    clearBtn.innerHTML = 'AC';
 
     return this.input.innerHTML;
   }
@@ -502,7 +513,6 @@ export default class Calculator {
 
     while (characters.length !== 0) {
       const currentCharacter = characters.shift();
-      console.log('currentCharacter: ', currentCharacter);
 
       if (this.isNumber(currentCharacter) || this.isPercent(currentCharacter)) {
         evalStack.push(currentCharacter);
