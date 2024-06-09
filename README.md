@@ -18,6 +18,8 @@
 - Switched to using ES6 classes
 - Added log function and removed lnv function
 - Added square function
+- Added tanh function
+- Fixed percent function
 
 ###### Version 1.2.1
 
