@@ -413,7 +413,7 @@ export default class Calculator {
   }
 
   isOperator(string) {
-    const regularExpression = new RegExp(/[+|-|*|log|logTen|sqrt|sin|cos|tan|EXP|e|!]/gm);
+    const regularExpression = new RegExp(/[+|-|*|log|logTen|sqrt|sin|cos|tan|tanh|EXP|e|!]/gm);
 
     if (string.match(regularExpression)) {
       return true;
@@ -494,6 +494,7 @@ export default class Calculator {
       operator === 'sin' ||
       operator === 'cos' ||
       operator === 'tan' ||
+      operator === 'tanh' ||
       operator === 'EXP' ||
       operator === 'e' ||
       operator === '!'
@@ -541,6 +542,7 @@ export default class Calculator {
       operator === 'sin' ||
       operator === 'cos' ||
       operator === 'tan' ||
+      operator === 'tanh' ||
       operator === 'EXP' ||
       operator === 'e' ||
       operator === '!'
@@ -565,6 +567,9 @@ export default class Calculator {
           break;
         case 'tan':
           result = Math.tan(operand2);
+          break;
+        case 'tanh':
+          result = Math.tanh(operand2);
           break;
         case 'EXP':
           result = Math.exp(operand2);
