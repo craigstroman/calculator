@@ -1,4 +1,4 @@
-import Calculator from './calculator/index';
+import { Calculator } from './calculator/calculator';
 
 const buttons = document.getElementsByClassName('btn');
 const clearBtn = document.getElementById('clear-function');
