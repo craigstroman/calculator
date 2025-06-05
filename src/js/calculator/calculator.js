@@ -232,34 +232,10 @@ export class Calculator {
   }
 
   setPercent() {
-    const clearBtn = document.getElementById('clear-function');
-    const showExpression = document.getElementsByClassName('expression')[0];
-    const lastCharacterIndex = this.inputText.lastIndexOf('');
-    const lastCharacter = this.inputText.substring(lastCharacterIndex - 1, 1);
-    const power = document.getElementsByClassName('supper')[0];
+    let inputText = this.inputText;
+    inputText = inputText + '%';
 
-    if (lastCharacter !== '%') {
-      if (this.inputText === '0') {
-        this.input.innerHTML = this.btnClicked;
-      } else if (power !== undefined) {
-        power.innerHTML = power.innerHTML + this.btnClicked;
-      } else {
-        this.input.innerHTML = this.input.innerHTML + this.btnClicked;
-      }
-    } else {
-      this.input.innerHTML = this.input.innerHTML.substr(0, this.input.innerHTML.length - 1);
-    }
-
-    showExpression.innerHTML = this.input.innerHTML;
-
-    const value = parseFloat(this.inputText);
-    const result = value / 100;
-
-    this.input.innerHTML = result;
-
-    clearBtn.innerHTML = 'AC';
-
-    return this.input.innerHTML;
+    this.input.innerHTML = inputText;
   }
 
   setNegativeNumber() {
@@ -428,8 +404,12 @@ export class Calculator {
 
     while (characters.length !== 0) {
       const currentCharacter = characters.shift();
-      if (this.isNumber(currentCharacter) || this.isPercent(currentCharacter)) {
+      if (this.isNumber(currentCharacter)) {
         output.push(currentCharacter);
+      } else if (this.isPercent(currentCharacter)) {
+        let newValue = parseFloat(currentCharacter.substring(0, currentCharacter.length - 1));
+        newValue /= 100;
+        output.push(newValue);
       } else if (this.isOperator(currentCharacter)) {
         while (
           (this.getAssociativity(currentCharacter) === 'left' &&
@@ -515,8 +495,12 @@ export class Calculator {
     while (characters.length !== 0) {
       const currentCharacter = characters.shift();
 
-      if (this.isNumber(currentCharacter) || this.isPercent(currentCharacter)) {
+      if (this.isNumber(currentCharacter) && !this.isPercent(currentCharacter)) {
         evalStack.push(currentCharacter);
+      } else if (this.isNumber(currentCharacter) && this.isPercent(currentCharacter)) {
+        let newValue = parseFloat(currentCharacter.substring(0, currentCharacter.length - 1));
+        newValue /= 100;
+        evalStack.push(newValue);
       } else if (this.isOperator(currentCharacter)) {
         let operand1 = 0;
         let operand2 = 0;
