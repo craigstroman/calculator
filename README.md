@@ -12,6 +12,10 @@
 
 ## Version History
 
+###### Version 2.0.1
+
+- Fixing percent calculation
+
 ###### Version 2.0.0
 
 - Switched to Webpack
